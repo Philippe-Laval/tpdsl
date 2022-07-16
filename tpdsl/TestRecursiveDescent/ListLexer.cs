@@ -12,29 +12,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestMulti
+namespace TestRecursiveDescent
 {
-    public class LookaheadLexer : Lexer
+    public class ListLexer : Lexer
     {
-        public static int NAME_TYPE = 2;
-        public static int COMMA_TYPE = 3;
-        public static int LBRACK_TYPE = 4;
-        public static int RBRACK_TYPE = 5;
-        public static int EQUALS_TYPE = 6;
-        public static string[] tokenNames = new string[] { "n/a", "<EOF>", "NAME", ",", "[", "]", "=" };
-        
-        public override string GetTokenName(int x)
-        {
-            return LookaheadLexer.tokenNames[x]; 
+        public static readonly int NAME_TYPE = 2;
+        public static readonly int COMMA_TYPE = 3;
+        public static readonly int LBRACK_TYPE = 4;
+        public static readonly int RBRACK_TYPE = 5;
+        public static readonly string[] tokenNames = new string[] { "n/a", "<EOF>", "NAME", "COMMA", "LBRACK", "RBRACK" };
+   
+        public ListLexer(string input) 
+            : base(input) 
+        { }
+
+        bool IsLETTER() 
+        { 
+            return c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z';
         }
 
-        public LookaheadLexer(string input)
-            :base (input)
-        {  }
-        
-        bool IsLETTER()
-        {
-            return c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z'; 
+        public override string GetTokenName(int x)
+        { 
+            return tokenNames[x];
         }
 
         public override Token NextToken()
@@ -46,23 +45,20 @@ namespace TestMulti
                     case ' ':
                     case '\t':
                     case '\n':
-                    case '\r': 
-                        WS(); 
+                    case '\r':
+                        WS();
                         continue;
-                    case ',': 
-                        Consume(); 
+                    case ',':
+                        Consume();
                         return new Token(COMMA_TYPE, ",");
                     case '[':
                         Consume();
                         return new Token(LBRACK_TYPE, "[");
                     case ']':
-                        Consume(); 
+                        Consume();
                         return new Token(RBRACK_TYPE, "]");
-                    case '=':
-                        Consume(); 
-                        return new Token(EQUALS_TYPE, "=");
                     default:
-                        if (IsLETTER()) return name();
+                        if (IsLETTER()) return NAME();
                         throw new Exception("invalid character: " + c);
                 }
             }
@@ -70,16 +66,17 @@ namespace TestMulti
         }
 
         /// <summary>
-        /// name : LETTER+ ; // name is sequence of >=1 letter
+        /// NAME : LETTER+ ; // NAME is sequence of >=1 letter
         /// </summary>
         /// <returns></returns>
-        Token name()
+        Token NAME()
         {
             StringBuilder buf = new StringBuilder();
             
-            do { 
+            do
+            {
                 buf.Append(c);
-                LETTER(); 
+                LETTER();
             } while (IsLETTER());
 
             return new Token(NAME_TYPE, buf.ToString());
@@ -88,7 +85,7 @@ namespace TestMulti
         /// <summary>
         /// LETTER   : 'a'..'z'|'A'..'Z'; // define what a letter is (\w)
         /// </summary>
-        /// <exception cref="Error"></exception>
+        /// <exception cref="Exception"></exception>
         void LETTER()
         {
             if (IsLETTER()) Consume();
@@ -98,10 +95,9 @@ namespace TestMulti
         /// <summary>
         /// WS : (' '|'\t'|'\n'|'\r')* ; // ignore any whitespace
         /// </summary>
-        override protected void WS()
+        void WS()
         {
-            while (c == ' ' || c == '\t' || c == '\n' || c == '\r') Advance();
+            while (c == ' ' || c == '\t' || c == '\n' || c == '\r') Consume();
         }
     }
 }
-

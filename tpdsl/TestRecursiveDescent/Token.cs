@@ -6,24 +6,23 @@
  * We make no guarantees that this code is fit for any purpose. 
  * Visit http://www.pragmaticprogrammer.com/titles/tpdsl for more book information.
 ***/
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace TestRecursiveDescent
 {
-    class Program
+    public class Token
     {
-        static void Main(string[] args)
+        public int type;
+        public String text;
+        public Token(int type, String text) { this.type = type; this.text = text; }
+        public String toString()
         {
-            Test("input.txt");
-        }
-
-        private static void Test(string fileName)
-        {
-            using TextReader text_reader = File.OpenText(fileName);
-            string input = text_reader.ReadToEnd();
-
-            ListLexer lexer = new ListLexer(input); // parse command-line arg
-            ListParser parser = new ListParser(lexer);
-            parser.list(); // begin parsing at rule list
+            String tname = ListLexer.tokenNames[type];
+            return "<'" + text + "'," + tname + ">";
         }
     }
 }
