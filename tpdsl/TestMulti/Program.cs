@@ -7,7 +7,7 @@
  * Visit http://www.pragmaticprogrammer.com/titles/tpdsl for more book information.
 ***/
 
-namespace TestLexer
+namespace TestMulti
 {
     class Program
     {
@@ -21,16 +21,9 @@ namespace TestLexer
             using TextReader text_reader = File.OpenText(fileName);
             string input = text_reader.ReadToEnd();
 
-            ListLexer lexer = new ListLexer(input);
-            Token t = lexer.NextToken();
-            while (t.Type != Lexer.EOF_TYPE)
-            {
-                Console.WriteLine(t);
-                t = lexer.NextToken();
-            }
-            Console.WriteLine(t); // EOF
+            LookaheadLexer lexer = new LookaheadLexer(input); 
+            LookaheadParser parser = new LookaheadParser(lexer, 2);
+            parser.list(); // begin parsing at rule list
         }
     }
 }
-
-    

@@ -67,6 +67,7 @@ namespace TestLexer
         Token NAME()
         {
             StringBuilder buf = new StringBuilder();
+
             do
             {
                 buf.Append(c);

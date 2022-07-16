@@ -12,23 +12,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestLexer
+namespace TestMulti
 {
     public class Token
     {
-        public int Type { get; set; }
-        public string Text { get; set; }
+        public int type;
+        public String text;
 
-        public Token(int type, string text)
-        {
-            this.Type = type;
-            this.Text = text;
-        }
-
+        public Token(int type, String text) { this.type = type; this.text = text; }
+        
         public override string ToString()
         {
-            string tname = ListLexer.tokenNames[Type];
-            return "<'" + Text + "'," + tname + ">";
+            String tname = LookaheadLexer.tokenNames[type];
+            return "<'" + text + "'," + tname + ">";
         }
     }
 }
