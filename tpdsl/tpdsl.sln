@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Normalized", "Normalized\No
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Homo", "Homo\Homo.csproj", "{177D12BB-74D7-495A-A832-CDA8C24FEF5E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hetero", "Hetero\Hetero.csproj", "{AA3E3B59-632A-4589-ADD8-133A229BB10F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -89,6 +91,10 @@ Global
 		{177D12BB-74D7-495A-A832-CDA8C24FEF5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{177D12BB-74D7-495A-A832-CDA8C24FEF5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{177D12BB-74D7-495A-A832-CDA8C24FEF5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA3E3B59-632A-4589-ADD8-133A229BB10F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA3E3B59-632A-4589-ADD8-133A229BB10F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA3E3B59-632A-4589-ADD8-133A229BB10F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA3E3B59-632A-4589-ADD8-133A229BB10F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -106,6 +112,7 @@ Global
 		{4B4CB761-DE35-4EFF-8C86-8CD5C5EEF6EE} = {97F21E74-B316-440A-BA57-4C3E3301B853}
 		{8385B183-572F-49A9-AFC3-34E1418F90C5} = {97F21E74-B316-440A-BA57-4C3E3301B853}
 		{177D12BB-74D7-495A-A832-CDA8C24FEF5E} = {97F21E74-B316-440A-BA57-4C3E3301B853}
+		{AA3E3B59-632A-4589-ADD8-133A229BB10F} = {97F21E74-B316-440A-BA57-4C3E3301B853}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B4A67A13-802D-440A-9AF3-0EDBCAE3262D}
