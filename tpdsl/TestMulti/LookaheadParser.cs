@@ -25,9 +25,9 @@ namespace TestMulti
         /// </summary>
         public void list()
         {
-            Match(LookaheadLexer.LBRACK); 
+            Match(LookaheadLexer.LBRACK_TYPE); 
             elements();
-            Match(LookaheadLexer.RBRACK);
+            Match(LookaheadLexer.RBRACK_TYPE);
         }
 
         /// <summary>
@@ -36,9 +36,9 @@ namespace TestMulti
         void elements()
         {
             element();
-            while (LA(1) == LookaheadLexer.COMMA)
+            while (LA(1) == LookaheadLexer.COMMA_TYPE)
             { 
-                Match(LookaheadLexer.COMMA);
+                Match(LookaheadLexer.COMMA_TYPE);
                 element(); 
             }
         }
@@ -46,14 +46,14 @@ namespace TestMulti
         /** element : NAME '=' NAME | NAME | list ; assignment, NAME or list */
         void element()
         {
-            if (LA(1) == LookaheadLexer.NAME && LA(2) == LookaheadLexer.EQUALS)
+            if (LA(1) == LookaheadLexer.NAME_TYPE && LA(2) == LookaheadLexer.EQUALS_TYPE)
             {
-                Match(LookaheadLexer.NAME);
-                Match(LookaheadLexer.EQUALS);
-                Match(LookaheadLexer.NAME);
+                Match(LookaheadLexer.NAME_TYPE);
+                Match(LookaheadLexer.EQUALS_TYPE);
+                Match(LookaheadLexer.NAME_TYPE);
             }
-            else if (LA(1) == LookaheadLexer.NAME) Match(LookaheadLexer.NAME);
-            else if (LA(1) == LookaheadLexer.LBRACK) list();
+            else if (LA(1) == LookaheadLexer.NAME_TYPE) Match(LookaheadLexer.NAME_TYPE);
+            else if (LA(1) == LookaheadLexer.LBRACK_TYPE) list();
             else throw new Exception("expecting name or list; found " + LT(1));
         }
     }
