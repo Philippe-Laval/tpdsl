@@ -9,7 +9,7 @@
 
 	<ItemGroup>
 		<Content Include="t.cymbol">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>
 
@@ -26,6 +26,12 @@
 			<DefaultCustomToolNamespace>$([MSBuild]::ValueOrDefault('$(RootNamespace).%(DefaultCustomToolNamespace)', '').TrimEnd('.'))</DefaultCustomToolNamespace>
 			<CustomToolNamespace>$([MSBuild]::ValueOrDefault(%(CustomToolNamespace), %(DefaultCustomToolNamespace)))</CustomToolNamespace>
 		</Antlr4>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="t2.cymbol">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 	
 </Project>

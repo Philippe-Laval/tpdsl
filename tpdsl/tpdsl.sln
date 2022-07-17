@@ -71,6 +71,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestVisitor", "TestVisitor\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestEmbedded", "TestEmbedded\TestEmbedded.csproj", "{9644D2A1-9819-434B-9B37-B044183B64B8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "semantics", "semantics", "{09DF2424-B2A8-40D6-8BE7-CEC859756566}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "trans", "trans", "{C47CEF14-E094-43B2-BFFF-1B25371098E2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
