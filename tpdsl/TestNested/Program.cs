@@ -6,6 +6,11 @@ namespace TestNested
 {
     class Program
     {
+        public static void Error(IToken t, string msg)
+        {
+            Console.WriteLine($"line {t.Line}:{t.Column} {msg}");
+        }
+
         static void Main(string[] args)
         {
             Console.WriteLine("t.cymbol");

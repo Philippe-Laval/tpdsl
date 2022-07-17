@@ -31,45 +31,31 @@ block
 
 // START: var
 varDeclaration
-    :   type ID ('=' expression)? ';'
+    :   type ID ('=' expr)? ';'
     ;
 // END: var
 
 statement
     :   block
     |	varDeclaration
-    |   'return' expression? ';'
-    |   postfixExpression // handles function calls like f(i);
-        (   '=' expression
-        |
-        )
-        ';'       
+    |   'return' expr? ';'
+    |   expr '=' expr ';' // assignment
+    |   expr ';'          // func call      
     ;
 
-expressionList
-    :   expression (',' expression)*
-    |   
+expr:   ID '(' exprList? ')'    # Call
+    |   expr '[' expr ']'       # Index
+    |   '-' expr                # Negate
+    |   '!' expr                # Not
+    |   expr '*' expr           # Mult
+    |   expr ('+'|'-') expr     # AddSub
+    |   expr '==' expr          # Equal
+    |   ID                      # Var
+    |   INT                     # Int
+    |   '(' expr ')'            # Parens
     ;
 
-expression
-    :   addExpression
-    ;
-    
-addExpression
-	:	postfixExpression ('+' postfixExpression)*
-	;
-
-// START: call
-postfixExpression
-    :   primary ( '(' expressionList ')' )*
-    ;
-// END: call
-
-primary
-    :   ID
-    |   INT
-    |   '(' expression ')'
-    ;
+exprList : expr (',' expr)* ;   // arg list
 
 // LEXER RULES
 
