@@ -11,7 +11,11 @@ methodDeclaration
 // END: method
 
 formalParameters
-    :   type ID (',' type ID)*
+    :   formalParameter (',' formalParameter)*
+    ;
+
+formalParameter
+    :   type ID
     ;
 
 type:   'float'

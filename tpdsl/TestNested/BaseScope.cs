@@ -63,10 +63,10 @@ namespace TestNested
 
 		public override string ToString()
 		{
-			var temp = Symbols.Select(o => $"{o.Key}");
+			var temp = Symbols.Select(o => $"{o.Value.ToString()}").ToList();
 			var result = String.Join(", ", temp);
 
-			return $"{GetScopeName()}:{result}";
+			return $"{GetScopeName()}:[{result}]";
 		}
 	}
 }

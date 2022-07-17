@@ -17,9 +17,9 @@ namespace TestNested
 	public class MethodSymbol : Symbol, IScope
 	{
 		public Dictionary<string, Symbol> OrderedArgs { get; set; } = new Dictionary<string, Symbol>();
-		private IScope _enclosingScope;
+		private IScope? _enclosingScope;
 
-		public MethodSymbol(string name, IType returnType, IScope enclosingScope)
+		public MethodSymbol(string name, IType returnType, IScope? enclosingScope)
 			: base(name, returnType)
 		{
 			_enclosingScope = enclosingScope;
@@ -70,10 +70,11 @@ namespace TestNested
 
 		public override string ToString()
 		{
-			var temp = OrderedArgs.Select(o => $"{o.Value.ToString()}");
-			var result = string.Join(", ", temp);
+			var temp = OrderedArgs.Select(o => $"{o.Value.ToString()}").ToList();
+			var paramResult = string.Join(", ", temp);
 
-			return "method" + base.ToString() + ":" + temp;
+			string result = $"method{base.ToString()}:[{paramResult}]";
+			return result;
 		}
 	}
 }

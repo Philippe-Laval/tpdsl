@@ -19,6 +19,8 @@ namespace TestNested
     /// </summary>
     public class Symbol
     {
+        //public enum SymbolType { tINVALID, tVOID, tINT, tFLOAT }
+
         /// <summary>
         /// The symbol's name
         /// </summary>

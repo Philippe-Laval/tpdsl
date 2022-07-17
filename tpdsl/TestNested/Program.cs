@@ -8,11 +8,16 @@ namespace TestNested
     {
         static void Main(string[] args)
         {
-            Test1("t.cymbol");
-            Test1("t2.cymbol");
+            Console.WriteLine("t.cymbol");
+            
+            Test("t.cymbol");
+
+            Console.WriteLine("t2.cymbol");
+            
+            Test("t2.cymbol");
         }
 
-        private static void Test1(string fileName)
+        private static void Test(string fileName)
         {
             using TextReader text_reader = File.OpenText(fileName);
 
@@ -22,11 +27,9 @@ namespace TestNested
             CymbolLexer lexer = new CymbolLexer(input);
             // Create a stream of tokens fed by the lexer
             CommonTokenStream tokens = new CommonTokenStream(lexer);
-
-            SymbolTable symtab = new SymbolTable(); // make global scope, types
-
             // Create a parser that feeds off the token stream
             CymbolParser parser = new CymbolParser(tokens);
+            parser.BuildParseTree = true;
 
             parser.RemoveErrorListeners(); // remove ConsoleErrorListener
             parser.AddErrorListener(new UnderlineListener()); // add ours
@@ -40,6 +43,17 @@ namespace TestNested
             IParseTree tree = parser.compilationUnit();
 
             Console.WriteLine(tree.ToStringTree(parser)); // print LISP-style tree
+
+            ParseTreeWalker walker = new ParseTreeWalker();
+
+            SymbolTable symtab = new SymbolTable(); // make global scope, types
+
+            DefPhase defPhase = new DefPhase(symtab);
+            walker.Walk(defPhase, tree);
+
+            // create next phase and feed symbol table info from def to ref phase
+            RefPhase refPhase = new RefPhase(symtab, defPhase.scopes);
+            walker.Walk(refPhase, tree);
         }
     }
 }
