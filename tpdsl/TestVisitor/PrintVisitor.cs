@@ -18,15 +18,15 @@ namespace TestVisitor
     {
         public void Visit(AssignNode n)
         {
-            n.id.Visit(this);
+            n.Id.Visit(this);
             Console.Write("=");
-            n.value.Visit(this);
+            n.Value.Visit(this);
             Console.WriteLine();
         }
 
         public void Visit(StatListNode n)
         {
-            foreach (StatNode p in n.elements)
+            foreach (StatNode p in n.Elements)
             {
                 p.Visit(this);
             }
@@ -35,29 +35,29 @@ namespace TestVisitor
         public void Visit(PrintNode n)
         {
             Console.Write("print ");
-            n.value.Visit(this);
+            n.Value.Visit(this);
             Console.WriteLine();
         }
 
         public void Visit(AddNode n)
         {
-            n.left.Visit(this);
+            n.Left.Visit(this);
             Console.Write("+");
-            n.right.Visit(this);
+            n.Right.Visit(this);
         }
 
         public void Visit(DotProductNode n)
         {
-            n.left.Visit(this);
+            n.Left.Visit(this);
             Console.Write(".");
-            n.right.Visit(this);
+            n.Right.Visit(this);
         }
 
         public void Visit(MultNode n)
         {
-            n.left.Visit(this);
+            n.Left.Visit(this);
             Console.Write("*");
-            n.right.Visit(this);
+            n.Right.Visit(this);
         }
 
         public void Visit(IntNode n)
@@ -73,11 +73,11 @@ namespace TestVisitor
         public void Visit(VectorNode n)
         {
             Console.Write("[");
-            if (n.elements != null)
+            if (n.Elements != null)
             {
-                for (int i = 0; i < n.elements.Count(); i++)
+                for (int i = 0; i < n.Elements.Count(); i++)
                 {
-                    ExprNode child = n.elements[i];
+                    ExprNode child = n.Elements[i];
                     if (i > 0) Console.Write(", ");
                     child.Visit(this);
                 }

@@ -12,21 +12,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestVisitor
+namespace TestEmbedded
 {
-    public class VectorNode : ExprNode
+    /// <summary>
+    /// A flat tree ==  tree with nil root: (nil child1 child2 ...)
+    /// </summary>
+    public class StatListNode : VecMathNode
     {
-        public List<ExprNode> Elements { get; set; } = new List<ExprNode>();
+        public List<StatNode> Elements { get; set; } = new List<StatNode>();
 
-        public VectorNode(Token t, List<ExprNode> elements)
-                : base(t) // track vector token; most likely it's an imaginary token
+        public StatListNode(List<StatNode> elements)
+            : base(new Token(Token.STAT_LIST)) // create imaginary token
         {
             this.Elements = elements;
         }
 
-        public override void Visit(IVecMathVisitor visitor)
+        public override void Print()
         {
-            visitor.Visit(this);
+            foreach (VecMathNode n in Elements) n.Print();
         }
+
     }
 }
+
+
+

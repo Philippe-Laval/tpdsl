@@ -16,14 +16,14 @@ namespace TestVisitor
 {
     public class AddNode : ExprNode
     {
-        public ExprNode left { get; set; } // named, node-specific, irregular children
-        public ExprNode right { get; set; }
+        public ExprNode Left { get; set; } // named, node-specific, irregular children
+        public ExprNode Right { get; set; }
 
         public AddNode(ExprNode left, Token t, ExprNode right) 
             : base(t)
         {
-            this.left = left;
-            this.right = right;
+            this.Left = left;
+            this.Right = right;
         }
 
         public override void Visit(IVecMathVisitor visitor) 

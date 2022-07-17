@@ -19,7 +19,7 @@ namespace TestVisitor
         // visitor dispatch according to node token type
         public void Print(VecMathNode n)
         {
-            switch (n.Token?.type)
+            switch (n.Token?.Type)
             {
                 case Token.ID:
                     Print((VarNode)n);
@@ -56,7 +56,7 @@ namespace TestVisitor
 
         public void Print(StatListNode n)
         {
-            foreach (StatNode p in n.elements)
+            foreach (StatNode p in n.Elements)
             {
                 Print(p);
             }
@@ -64,38 +64,38 @@ namespace TestVisitor
 
         public void Print(AssignNode n)
         {
-            Print(n.id);           // walk left child
+            Print(n.Id);           // walk left child
             Console.Write("="); // print operator
-            Print(n.value);        // walk right child
+            Print(n.Value);        // walk right child
             Console.WriteLine();  // print newline
         }
 
         public void Print(PrintNode n)
         {
             Console.Write("print ");
-            Print(n.value);
+            Print(n.Value);
             Console.WriteLine();
         }
 
         public void Print(AddNode n)
         {
-            Print(n.left);         // walk left child
+            Print(n.Left);         // walk left child
             Console.Write("+"); // print operator
-            Print(n.right);        // walk right child
+            Print(n.Right);        // walk right child
         }
 
         public void Print(DotProductNode n)
         {
-            Print(n.left);
+            Print(n.Left);
             Console.Write(".");
-            Print(n.right);
+            Print(n.Right);
         }
 
         public void Print(MultNode n)
         {
-            Print(n.left);
+            Print(n.Left);
             Console.Write("*");
-            Print(n.right);
+            Print(n.Right);
         }
 
         public void Print(IntNode n)
@@ -111,11 +111,11 @@ namespace TestVisitor
         public void Print(VectorNode n)
         {
             Console.Write("[");
-            if (n.elements != null)
+            if (n.Elements != null)
             {
-                for (int i = 0; i < n.elements.Count(); i++)
+                for (int i = 0; i < n.Elements.Count(); i++)
                 {
-                    ExprNode child = n.elements[i];
+                    ExprNode child = n.Elements[i];
                     if (i > 0) Console.Write(", ");
                     Print(child);
                 }

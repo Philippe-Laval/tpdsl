@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestVisitor
+namespace TestEmbedded
 {
     public class Token
     {
@@ -31,18 +31,18 @@ namespace TestVisitor
         public string Text { get; set; } = string.Empty;
 
         public Token(int type, string text)
-        {
-            this.Type = type; 
+        { 
+            this.Type = type;
             this.Text = text; 
         }
 
-        public Token(int type)
-        { 
-            this.Type = type; 
+        public Token(int type) 
+        {
+            this.Type = type;
         }
 
         public override string ToString() 
-        { 
+        {
             return Text;
         }
     }

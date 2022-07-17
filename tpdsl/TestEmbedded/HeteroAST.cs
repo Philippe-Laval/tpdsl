@@ -12,21 +12,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestVisitor
+namespace TestEmbedded
 {
-    public class VectorNode : ExprNode
+    /// <summary>
+    /// Heterogeneous AST node type
+    /// </summary>
+    public class HeteroAST
     {
-        public List<ExprNode> Elements { get; set; } = new List<ExprNode>();
-
-        public VectorNode(Token t, List<ExprNode> elements)
-                : base(t) // track vector token; most likely it's an imaginary token
+        /// <summary>
+        /// This node created from which token?
+        /// </summary>
+        public Token? Token { get; set; } = null; 
+        
+        public HeteroAST() 
         {
-            this.Elements = elements;
         }
 
-        public override void Visit(IVecMathVisitor visitor)
+        public HeteroAST(Token t)
+        { 
+            this.Token = t; 
+        }
+
+        public override string ToString()
         {
-            visitor.Visit(this);
+            return Token?.ToString() ?? string.Empty; 
         }
     }
 }

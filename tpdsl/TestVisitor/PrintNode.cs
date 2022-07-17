@@ -16,12 +16,12 @@ namespace TestVisitor
 {
     public class PrintNode : StatNode
     {
-        public ExprNode value { get; set; }
+        public ExprNode Value { get; set; }
 
         public PrintNode(Token t, ExprNode value)
                 : base(t)
         {
-            this.value = value;
+            this.Value = value;
         }
 
         public override void Visit(IVecMathVisitor visitor) { visitor.Visit(this); }

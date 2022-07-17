@@ -16,14 +16,14 @@ namespace TestVisitor
 {
     public class AssignNode : StatNode
     {
-        public VarNode id { get; set; }
-        public ExprNode value { get; set; }
+        public VarNode Id { get; set; }
+        public ExprNode Value { get; set; }
 
         public AssignNode(VarNode id, Token t, ExprNode value)
             : base(t)
         {
-            this.id = id;
-            this.value = value;
+            this.Id = id;
+            this.Value = value;
         }
 
         public override void Visit(IVecMathVisitor visitor)

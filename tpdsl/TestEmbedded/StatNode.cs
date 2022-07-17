@@ -12,21 +12,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestVisitor
+namespace TestEmbedded
 {
-    public class VectorNode : ExprNode
+    public abstract class StatNode : VecMathNode
     {
-        public List<ExprNode> Elements { get; set; } = new List<ExprNode>();
-
-        public VectorNode(Token t, List<ExprNode> elements)
-                : base(t) // track vector token; most likely it's an imaginary token
-        {
-            this.Elements = elements;
+        public StatNode() : base()
+        { 
         }
 
-        public override void Visit(IVecMathVisitor visitor)
-        {
-            visitor.Visit(this);
+        public StatNode(Token t) : base(t)
+        { 
         }
     }
 }
+
+

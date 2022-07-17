@@ -19,12 +19,12 @@ namespace TestVisitor
     /// </summary>
     public class StatListNode : VecMathNode
     {
-        public List<StatNode> elements { get; set; } = new List<StatNode>();
+        public List<StatNode> Elements { get; set; } = new List<StatNode>();
 
         public StatListNode(List<StatNode> elements)
             : base(new Token(Token.STAT_LIST)) // create imaginary token
         {
-            this.elements = elements;
+            this.Elements = elements;
         }
 
         public override void Visit(IVecMathVisitor visitor) 

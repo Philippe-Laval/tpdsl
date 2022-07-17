@@ -12,21 +12,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestVisitor
+namespace TestEmbedded
 {
-    public class VectorNode : ExprNode
+    /// <summary>
+    /// A generic heterogeneous tree node used in our vector math trees
+    /// </summary>
+    public abstract class VecMathNode : HeteroAST
     {
-        public List<ExprNode> Elements { get; set; } = new List<ExprNode>();
-
-        public VectorNode(Token t, List<ExprNode> elements)
-                : base(t) // track vector token; most likely it's an imaginary token
+        public VecMathNode() 
+            : base()
         {
-            this.Elements = elements;
         }
 
-        public override void Visit(IVecMathVisitor visitor)
+        public VecMathNode(Token t)
+            : base(t)
         {
-            visitor.Visit(this);
+        }
+
+        public virtual void Print()
+        { 
+            // generic print tree-walker method
+            Console.Write(Token != null ? Token.ToString() : "<null>");
         }
     }
 }
+

@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestVisitor
+namespace TestEmbedded
 {
     public class VectorNode : ExprNode
     {
@@ -24,9 +24,19 @@ namespace TestVisitor
             this.Elements = elements;
         }
 
-        public override void Visit(IVecMathVisitor visitor)
+        public override void Print()
         {
-            visitor.Visit(this);
+            Console.Write("[");
+            if (Elements != null)
+            {
+                for (int i = 0; i < Elements.Count(); i++)
+                {
+                    ExprNode child = Elements[i];
+                    if (i > 0) Console.Write(", ");
+                    child.Print();
+                }
+            }
+            Console.Write("]");
         }
     }
 }

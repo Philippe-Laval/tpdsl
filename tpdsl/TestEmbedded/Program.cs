@@ -7,7 +7,7 @@
  * Visit http://www.pragmaticprogrammer.com/titles/tpdsl for more book information.
 ***/
 
-namespace TestVisitor
+namespace TestEmbedded
 {
     class Program
     {
@@ -24,7 +24,7 @@ namespace TestVisitor
             VarNode x = new VarNode(new Token(Token.ID, "x"));
             AssignNode assign = new AssignNode(x, new Token(Token.ASSIGN, "="), a);
             stats.Add(assign);
-            
+
             // print x * [2, 3, 4]
             Token mult = new Token(Token.MULT, "*");
             List<ExprNode> elements = new List<ExprNode>();
@@ -36,16 +36,10 @@ namespace TestVisitor
             ExprNode pv = new MultNode(xref, mult, v);
             PrintNode p = new PrintNode(new Token(Token.PRINT, "print"), pv);
             stats.Add(p);
-            
+
             StatListNode statlist = new StatListNode(stats);
 
-            // Create visitor and then call visit on root node (statlist)
-            PrintVisitor visitor = new PrintVisitor();
-            statlist.Visit(visitor); // tell root node to visit with this visitor
-
-            // Create visitor and then visit root node (statlist)
-            IndependentPrintVisitor indepVisitor = new IndependentPrintVisitor();
-            indepVisitor.Print(statlist); // tell visitor to print from root
+            statlist.Print(); // Launch embedded walker
         }
     }
 }
