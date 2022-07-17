@@ -6,24 +6,29 @@
  * We make no guarantees that this code is fit for any purpose. 
  * Visit http://www.pragmaticprogrammer.com/titles/tpdsl for more book information.
 ***/
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace TestMemoize
 {
-    class Program
+    public class Token
     {
-        static void Main(string[] args)
-        {
-            Test("input.txt");
+        public int type;
+        public string text;
+
+        public Token(int type, String text)
+        { 
+            this.type = type;
+            this.text = text;
         }
 
-        private static void Test(string fileName)
+        public override string ToString()
         {
-            using TextReader text_reader = File.OpenText(fileName);
-            string input = text_reader.ReadToEnd();
-
-            BacktrackLexer lexer = new BacktrackLexer(input); 
-            BacktrackParser parser = new BacktrackParser(lexer);
-            parser.stat(); // begin parsing at rule stat
+            String tname = BacktrackLexer.tokenNames[type];
+            return "<'" + text + "'," + tname + ">";
         }
     }
 }
