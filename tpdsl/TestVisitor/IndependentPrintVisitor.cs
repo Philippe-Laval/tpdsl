@@ -17,33 +17,33 @@ namespace TestVisitor
     public class IndependentPrintVisitor
     {
         // visitor dispatch according to node token type
-        public void print(VecMathNode n)
+        public void Print(VecMathNode n)
         {
             switch (n.Token?.type)
             {
                 case Token.ID:
-                    print((VarNode)n);
+                    Print((VarNode)n);
                     break;
                 case Token.ASSIGN:
-                    print((AssignNode)n);
+                    Print((AssignNode)n);
                     break;
                 case Token.PRINT:
-                    print((PrintNode)n);
+                    Print((PrintNode)n);
                     break;
                 case Token.PLUS:
-                    print((AddNode)n);
+                    Print((AddNode)n);
                     break;
                 case Token.MULT:
-                    print((MultNode)n);
+                    Print((MultNode)n);
                     break;
                 case Token.DOT:
-                    print((DotProductNode)n);
+                    Print((DotProductNode)n);
                     break;
                 case Token.INT:
-                    print((IntNode)n);
+                    Print((IntNode)n);
                     break;
                 case Token.VEC:
-                    print((VectorNode)n);
+                    Print((VectorNode)n);
                     break;
                 case Token.STAT_LIST:
                     Print((StatListNode)n);
@@ -58,57 +58,57 @@ namespace TestVisitor
         {
             foreach (StatNode p in n.elements)
             {
-                print(p);
+                Print(p);
             }
         }
 
-        public void print(AssignNode n)
+        public void Print(AssignNode n)
         {
-            print(n.id);           // walk left child
+            Print(n.id);           // walk left child
             Console.Write("="); // print operator
-            print(n.value);        // walk right child
+            Print(n.value);        // walk right child
             Console.WriteLine();  // print newline
         }
 
-        public void print(PrintNode n)
+        public void Print(PrintNode n)
         {
             Console.Write("print ");
-            print(n.value);
+            Print(n.value);
             Console.WriteLine();
         }
 
-        public void print(AddNode n)
+        public void Print(AddNode n)
         {
-            print(n.left);         // walk left child
+            Print(n.left);         // walk left child
             Console.Write("+"); // print operator
-            print(n.right);        // walk right child
+            Print(n.right);        // walk right child
         }
 
-        public void print(DotProductNode n)
+        public void Print(DotProductNode n)
         {
-            print(n.left);
+            Print(n.left);
             Console.Write(".");
-            print(n.right);
+            Print(n.right);
         }
 
-        public void print(MultNode n)
+        public void Print(MultNode n)
         {
-            print(n.left);
+            Print(n.left);
             Console.Write("*");
-            print(n.right);
+            Print(n.right);
         }
 
-        public void print(IntNode n)
+        public void Print(IntNode n)
         {
             Console.Write(n.ToString());
         }
 
-        public void print(VarNode n)
+        public void Print(VarNode n)
         {
             Console.Write(n.ToString());
         }
 
-        public void print(VectorNode n)
+        public void Print(VectorNode n)
         {
             Console.Write("[");
             if (n.elements != null)
@@ -117,7 +117,7 @@ namespace TestVisitor
                 {
                     ExprNode child = n.elements[i];
                     if (i > 0) Console.Write(", ");
-                    print(child);
+                    Print(child);
                 }
             }
             Console.Write("]");
