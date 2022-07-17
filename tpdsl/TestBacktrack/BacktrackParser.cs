@@ -51,7 +51,7 @@ namespace TestBacktrack
                 list();
                 Match(Lexer.EOF_TYPE); 
             }
-            catch (RecognitionException e) 
+            catch (RecognitionException) 
             {
                 success = false; 
             }
@@ -67,7 +67,7 @@ namespace TestBacktrack
                 assign(); 
                 Match(Lexer.EOF_TYPE);
             }
-            catch (RecognitionException e) 
+            catch (RecognitionException) 
             { 
                 success = false;
             }
