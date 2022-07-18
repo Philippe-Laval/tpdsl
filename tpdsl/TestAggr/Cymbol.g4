@@ -1,10 +1,7 @@
 grammar Cymbol;
 
 compilationUnit
-    :   (	// hard to distinguish alts from left edge so backtrack
-    		options {backtrack=true;} 
-		:	structDeclaration | methodDeclaration | varDeclaration
-		)+
+    :	( structDeclaration | methodDeclaration | varDeclaration )+
     ;
 
 structDeclaration
@@ -49,7 +46,6 @@ varDeclaration
 // END: var
 
 statement
-options {backtrack=true;} // hard to distinguish struct from var from left
     :   block
     |	structDeclaration
     |	varDeclaration
@@ -66,7 +62,7 @@ expr:   ID '(' exprList? ')'    # Call
     |   expr '*' expr           # Mult
     |   expr ('+'|'-') expr     # AddSub
     |   expr '==' expr          # Equal
-    |   ID                      # Var
+    |   qid                     # Var
     |   INT                     # Int
     |   '(' expr ')'            # Parens
     ;
@@ -74,6 +70,10 @@ expr:   ID '(' exprList? ')'    # Call
 exprList : expr (',' expr)* ;   // arg list
 
 // LEXER RULES
+
+qid 
+	:	ID ('.' ID)* 
+	;
 
 ID  :   LETTER (LETTER | '0'..'9')*
     ;

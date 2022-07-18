@@ -12,19 +12,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestTree
+namespace TestAggr
 {
     public abstract class ScopedSymbol : Symbol, IScope
     {
         public IScope? _enclosingScope;
 
-        public ScopedSymbol(string name, IScope? enclosingScope)
-            : base(name)
+        public ScopedSymbol(string name, IType type, IScope? enclosingScope)
+                : base(name, type)
         {
             _enclosingScope = enclosingScope;
         }
 
-        public Symbol? Resolve(String name)
+        public ScopedSymbol(string name, IScope? enclosingScope)
+                : base(name)
+        {
+            _enclosingScope = enclosingScope;
+        }
+
+        public Symbol? Resolve(string name)
         {
             Symbol? s = null;
 
@@ -33,16 +39,21 @@ namespace TestTree
             {
                 s = members[name];
             }
-            
+
             if (s != null) return s;
-            
-            // if not here, check any parent scope
-            if (GetParentScope() != null)
+
+            // if not here, check any enclosing scope
+            if (GetEnclosingScope() != null)
             {
-                return GetParentScope()?.Resolve(name);
+                return GetEnclosingScope()?.Resolve(name);
             }
-            
+
             return null; // not found
+        }
+
+        public Symbol? ResolveType(string name)
+        {
+            return Resolve(name);
         }
 
         public void Define(Symbol sym)
@@ -57,27 +68,26 @@ namespace TestTree
             }
         }
 
-        public IScope? GetParentScope()
-        {
-            return GetEnclosingScope();
-        }
-
         public IScope? GetEnclosingScope()
         {
             return _enclosingScope;
         }
 
-        public String GetScopeName() 
+        public string GetScopeName() 
         { 
             return this.GetName();
         }
 
         /// <summary>
         /// Indicate how subclasses store scope members. 
-        /// Allows us object factor out common code in this class.
+        /// Allows us to factor out common code in this class.
         /// </summary>
         /// <returns></returns>
         public abstract Dictionary<string, Symbol> GetMembers();
-
+ 
     }
 }
+
+
+
+

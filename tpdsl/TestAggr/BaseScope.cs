@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestNested
+namespace TestAggr
 {
 	public abstract class BaseScope : IScope
 	{
@@ -27,7 +27,7 @@ namespace TestNested
 			_enclosingScope = enclosingScope;
 		}
 
-		public Symbol? Resolve(string name)
+		public Symbol? Resolve(String name)
 		{
 			Symbol? s = null;
 

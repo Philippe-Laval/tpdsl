@@ -12,23 +12,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestTree
+namespace TestAggr
 {
-    public class StructSymbol : ScopedSymbol, IScope
+    public class StructSymbol : ScopedSymbol, IType, IScope
     {
-        public Dictionary<string, Symbol> Fields { get; set; } = new Dictionary<string, Symbol>();
-        
+        public Dictionary<string, Symbol> Fields { get; set; } = new Dictionary<String, Symbol>();
+
         public StructSymbol(string name, IScope? parent)
             : base(name, parent)
-        {
+        { 
         }
 
         /// <summary>
-        /// For a.b, only look in a only to resolve b, not up scope tree
+        /// For a.b, only look in fields to resolve b, not up scope tree
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public Symbol? ResolveMember(string name)
+        public Symbol? ResolveMember(String name)
         {
             if (Fields.ContainsKey(name))
             {
@@ -38,11 +38,11 @@ namespace TestTree
             return null;
         }
 
-        public override Dictionary<string, Symbol> GetMembers() 
+        public override Dictionary<string, Symbol> GetMembers()
         {
             return Fields;
         }
-        
+
         public override string ToString()
         {
             var temp = Fields.Select(o => $"{o.Key}={o.Value.ToString()}").ToList();
@@ -50,6 +50,8 @@ namespace TestTree
 
             return $"struct {this.GetName()}:{{{result}}}";
         }
-    
+
     }
 }
+
+

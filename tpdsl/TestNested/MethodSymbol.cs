@@ -63,7 +63,7 @@ namespace TestNested
 			return _enclosingScope;
 		}
 
-		public String GetScopeName()
+		public string GetScopeName()
 		{
 			return _name;
 		}

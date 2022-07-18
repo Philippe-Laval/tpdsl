@@ -12,7 +12,7 @@ namespace TestTree
         public Dictionary<string, Symbol> FormalArgs { get; set; } = new Dictionary<string, Symbol>();
         public SlistContext BlockAST { get; set; } = null!;
 
-        public FunctionSymbol(String name, IScope? parent) 
+        public FunctionSymbol(string name, IScope? parent) 
             : base(name, parent)
         {
         }
@@ -25,7 +25,7 @@ namespace TestTree
         public override string GetName()
         {
             var temp = FormalArgs.Select(o => $"{o.Key}").ToList();
-            var result = String.Join(", ", temp);
+            var result = string.Join(", ", temp);
 
             return _name + "(" + result + ")";
         }
