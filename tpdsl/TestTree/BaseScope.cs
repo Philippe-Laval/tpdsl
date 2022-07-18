@@ -58,7 +58,7 @@ namespace TestTree
 
 		public override string ToString()
 		{
-			var temp = Symbols.Select(o => $"{o.Key}={o.Value.ToString()}");
+			var temp = Symbols.Select(o => $"{o.Key}={o.Value.ToString()}").ToList();
 			var result = String.Join(", ", temp);
 
 			return result;

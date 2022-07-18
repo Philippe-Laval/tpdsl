@@ -7,18 +7,15 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-	<ItemGroup>
-		<Content Include="t.cymbol">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-	</ItemGroup>
+  <ItemGroup>
+    <None Update="t.cymbol">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="t2.cymbol">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
-	<ItemGroup>
-		<None Update="t2.cymbol">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</None>
-	</ItemGroup>
-	
 	<ItemGroup>
 		<PackageReference Include="Antlr4.CodeGenerator" Version="4.6.6">
 			<PrivateAssets>all</PrivateAssets>
@@ -33,5 +30,5 @@
 			<CustomToolNamespace>$([MSBuild]::ValueOrDefault(%(CustomToolNamespace), %(DefaultCustomToolNamespace)))</CustomToolNamespace>
 		</Antlr4>
 	</ItemGroup>
-
+	
 </Project>

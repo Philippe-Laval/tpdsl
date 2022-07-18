@@ -37,10 +37,10 @@ namespace TestTree
         
         public override string ToString()
         {
-            var temp = Fields.Select(o => $"{o.Key}={o.Value.ToString()}");
+            var temp = Fields.Select(o => $"{o.Key}={o.Value.ToString()}").ToList();
             var result = String.Join(", ", temp);
 
-            return $"struct {this.GetName()}:{result}";
+            return $"struct {this.GetName()}:{{{result}}}";
         }
     
     }

@@ -24,7 +24,7 @@ namespace TestTree
 
         public override string GetName()
         {
-            var temp = FormalArgs.Select(o => $"{o.Key}");
+            var temp = FormalArgs.Select(o => $"{o.Key}").ToList();
             var result = String.Join(", ", temp);
 
             return _name + "(" + result + ")";

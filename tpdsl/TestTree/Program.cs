@@ -13,25 +13,25 @@ namespace TestTree
 
             if (checkStatic)
             {
-                // Test1("test.pie");
+                Test1("test.pie");
                 // Test1("apple.pie");
                 // Test1("cherry.pie");
                 // Test1("factorial.pie");
                 // Test1("forward.pie");
-                // Test1("localstruct.pie");
+                Test1("localstruct.pie");
                 // Test1("lookup.pie");
                 // Test1("loop.pie");
                 // Test1("struct.pie");
                 Test1("structerrors.pie");
             }
 
-            // Test2("test.pie");
+            Test2("test.pie");
             // Test2("apple.pie");
             // Test2("cherry.pie");
             // Test2("factorial.pie");
             // Test2("forward.pie");
             // Test2("lookup.pie");
-            // Test2("localstruct.pie");
+            Test2("localstruct.pie");
             // Test2("loop.pie");
             // Test2("struct.pie
             Test2("structerrors.pie");
