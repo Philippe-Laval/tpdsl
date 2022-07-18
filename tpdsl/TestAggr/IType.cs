@@ -12,14 +12,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestNested
+namespace TestAggr
 {
-    public class VariableSymbol : Symbol
+    /// <summary>
+    ///  A "tag" to indicate which symbols are types
+    /// </summary>
+    public interface IType
     {
-        public VariableSymbol(string name, IType? type) 
-            : base(name, type) 
-        {  
-        }
-
+        public string GetName();
     }
 }

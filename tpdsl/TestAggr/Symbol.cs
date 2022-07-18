@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestNested
+namespace TestAggr
 {
     /// <summary>
     /// A generic programming language symbol
@@ -58,24 +58,10 @@ namespace TestNested
             return _name;
         }
 
-        //public override string ToString()
-        //{
-        //    if (Type != null) return '<' + GetName() + ":" + Type + '>';
-        //    return GetName();
-        //}
-
         public override string ToString()
         {
-            string s = string.Empty;
-            if (Scope != null) s = Scope.GetScopeName() + ".";
-            if (Type != null) return '<' + s + GetName() + ":" + Type + '>';
-            return s + GetName();
+            if (Type != null) return '<' + GetName() + ":" + Type + '>';
+            return GetName();
         }
-
-        public static string StripBrackets(string s)
-        {
-            return s.Substring(1, s.Length - 1);
-        }
-
     }
 }

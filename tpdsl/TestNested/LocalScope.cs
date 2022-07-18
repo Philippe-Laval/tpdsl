@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace TestNested
 {
-    internal class LocalScope : BaseScope
+    public class LocalScope : BaseScope
     {
         public LocalScope(IScope? parent) 
             : base(parent)
