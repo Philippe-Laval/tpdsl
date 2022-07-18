@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestAggr
+namespace TestClass
 {
     /// <summary>
     /// A generic programming language symbol
@@ -33,6 +33,11 @@ namespace TestAggr
         /// The scope where the symbol is defined
         /// </summary>
         public IScope? Scope { get; set; } = null;
+
+        /// <summary>
+        /// points at ID node in tree
+        /// </summary>
+        // public SlistContext Def { get; set; } = null!;
 
         /// <summary>
         /// Create a Symbol object
@@ -60,8 +65,10 @@ namespace TestAggr
 
         public override string ToString()
         {
-            if (Type != null) return '<' + GetName() + ":" + Type + '>';
-            return GetName();
+            string s = string.Empty;
+            if (Scope != null) s = Scope.GetScopeName() + ".";
+            if (Type != null) return '<' + s + GetName() + ":" + Type + '>';
+            return s + GetName();
         }
     }
 }
