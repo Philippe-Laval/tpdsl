@@ -68,6 +68,11 @@ namespace TestAggr
             }
         }
 
+        public IScope? GetParentScope()
+        { 
+            return GetEnclosingScope(); 
+        }
+
         public IScope? GetEnclosingScope()
         {
             return _enclosingScope;

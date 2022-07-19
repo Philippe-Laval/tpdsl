@@ -16,18 +16,18 @@ namespace TestClass
 {
     public abstract class ScopedSymbol : Symbol, IScope
     {
-        public IScope? _enclosingScope;
+        public IScope? EnclosingScope { get; set; }
 
         public ScopedSymbol(string name, IType type, IScope? enclosingScope)
                 : base(name, type)
         {
-            _enclosingScope = enclosingScope;
+            EnclosingScope = enclosingScope;
         }
 
         public ScopedSymbol(string name, IScope? enclosingScope)
                 : base(name)
         {
-            _enclosingScope = enclosingScope;
+            EnclosingScope = enclosingScope;
         }
 
         public Symbol? Resolve(string name)
@@ -68,14 +68,14 @@ namespace TestClass
             }
         }
 
-        public IScope? GetParentScope()
+        public virtual IScope? GetParentScope()
         { 
             return GetEnclosingScope();
         }
 
         public IScope? GetEnclosingScope() 
         { 
-            return _enclosingScope;
+            return EnclosingScope;
         }
 
         public string GetScopeName() 
