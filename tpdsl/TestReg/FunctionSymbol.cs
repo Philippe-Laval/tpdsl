@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestStack
+namespace TestReg
 {
     public class FunctionSymbol
     {
@@ -23,7 +23,7 @@ namespace TestStack
 
         public FunctionSymbol(string name)
         {
-            Name = name; 
+            Name = name;
         }
 
         public FunctionSymbol(string name, int nargs, int nlocals, int address)
@@ -34,8 +34,8 @@ namespace TestStack
             Address = address;
         }
 
-        public override int GetHashCode() 
-        { 
+        public override int GetHashCode()
+        {
             return Name.GetHashCode();
         }
 
