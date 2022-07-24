@@ -1,5 +1,4 @@
 grammar NameListWithParallelAssign;
-options {backtrack=true;}
 // START: parser
 stat     : list EOF | assign EOF ;
 assign   : list '=' list ;

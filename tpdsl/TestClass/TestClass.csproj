@@ -31,4 +31,19 @@
     </None>
   </ItemGroup>
 
+	<ItemGroup>
+		<PackageReference Include="Antlr4.Runtime.Standard" Version="4.10.1" />
+		<PackageReference Include="Antlr4BuildTasks" Version="10.7" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Antlr4 Include="Cymbol.g4">
+			<Listener>true</Listener>
+			<Visitor>false</Visitor>
+			<GAtn>false</GAtn>
+			<Package>TestAggr</Package>
+			<Error>true</Error>
+		</Antlr4>
+	</ItemGroup>
+
 </Project>
