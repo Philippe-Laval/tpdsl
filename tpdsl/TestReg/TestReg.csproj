@@ -23,31 +23,22 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Update="t.pcode">
+		<None Update="struct.rcode">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-		<None Update="t2.pcode">
+		<None Update="loop.rcode">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-		<None Update="t3.pcode">
+		<None Update="t.rcode">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-		<None Update="t4.pcode">
+		<None Update="t2.rcode">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-		<None Update="t5.pcode">
+		<None Update="t3.rcode">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-		<None Update="t6.pcode">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-		<None Update="t7.pcode">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-		<None Update="t8.pcode">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-		<None Update="t9.pcode">
+		<None Update="t4.rcode">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
