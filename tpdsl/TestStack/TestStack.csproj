@@ -8,16 +8,6 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<None Remove="t.pcode" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Content Include="t.pcode">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</Content>
-	</ItemGroup>
-
-	<ItemGroup>
 		<PackageReference Include="Antlr4.Runtime.Standard" Version="4.10.1" />
 		<PackageReference Include="Antlr4BuildTasks" Version="10.7" />
 	</ItemGroup>
@@ -30,6 +20,36 @@
 			<Package>TestStack</Package>
 			<Error>false</Error>
 		</Antlr4>
+	</ItemGroup>
+	
+	<ItemGroup>
+		<None Update="t.pcode">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	  <None Update="t2.pcode">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="t3.pcode">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="t4.pcode">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="t5.pcode">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="t6.pcode">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="t7.pcode">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="t8.pcode">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="t9.pcode">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 	
 </Project>
