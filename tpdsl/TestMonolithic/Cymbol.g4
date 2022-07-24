@@ -2,7 +2,7 @@
 grammar Cymbol; // my grammar is called Cymbol
 
 // define a SymbolTable field in generated parser
-@members {SymbolTable symtab;}
+@parser::members {SymbolTable symtab;}
 
 compilationUnit[SymbolTable symtab] // pass symbol table to start rule
 @init {this.symtab = symtab;}       // set the parser's field
