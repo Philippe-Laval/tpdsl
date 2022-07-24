@@ -13,27 +13,60 @@ namespace TestTree
 
             if (checkStatic)
             {
+                Console.WriteLine("Checking syntax");
+
+                Console.WriteLine("test.pie");
                 Test1("test.pie");
-                // Test1("apple.pie");
-                // Test1("cherry.pie");
-                // Test1("factorial.pie");
-                // Test1("forward.pie");
+
+                Console.WriteLine("apple.pie");
+                Test1("apple.pie");
+
+                Console.WriteLine("cherry.pie");      
+                Test1("cherry.pie");
+
+                Console.WriteLine("factorial.pie");
+                Test1("factorial.pie");
+
+                Console.WriteLine("forward.pie");
+                Test1("forward.pie");
+
+                Console.WriteLine("localstruct.pie");         
                 Test1("localstruct.pie");
-                // Test1("lookup.pie");
-                // Test1("loop.pie");
-                // Test1("struct.pie");
+                
+                Console.WriteLine("lookup.pie");   
+                Test1("lookup.pie");
+
+                Console.WriteLine("loop.pie"); 
+                Test1("loop.pie");
+
+                Console.WriteLine("struct.pie"); 
+                Test1("struct.pie");
+
+                Console.WriteLine("structerrors.pie"); 
                 Test1("structerrors.pie");
             }
 
+            Console.WriteLine("Interpreter");
+
+            Console.WriteLine("test.pie");
             Test2("test.pie");
-            // Test2("apple.pie");
-            // Test2("cherry.pie");
-            // Test2("factorial.pie");
-            // Test2("forward.pie");
-            // Test2("lookup.pie");
+            Console.WriteLine("apple.pie");
+            Test2("apple.pie");
+            Console.WriteLine("cherry.pie");
+            Test2("cherry.pie");
+            Console.WriteLine("factorial.pie");
+            Test2("factorial.pie");
+            Console.WriteLine("forward.pie");
+            Test2("forward.pie");
+            Console.WriteLine("lookup.pie");
+            Test2("lookup.pie");
+            Console.WriteLine("localstruct.pie");
             Test2("localstruct.pie");
-            // Test2("loop.pie");
-            // Test2("struct.pie
+            Console.WriteLine("loop.pie");
+            Test2("loop.pie");
+            Console.WriteLine("struct.pie");
+            Test2("struct.pie");
+            Console.WriteLine("structerrors.pie");
             Test2("structerrors.pie");
         }
 

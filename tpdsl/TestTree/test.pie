@@ -17,4 +17,4 @@ print 'z' < 'a'
 print 'a' == 'a'
 print "test" == "test"
 if 2 < 3 print "OK"
-else print "KO";
+else print "KO"
