@@ -1,4 +1,12 @@
-﻿using Antlr4.Runtime;
+﻿/***
+ * Excerpted from "Language Implementation Patterns",
+ * published by The Pragmatic Bookshelf.
+ * Copyrights apply to this code. It may not be used to create training material, 
+ * courses, books, articles, and the like. Contact us if you are in doubt.
+ * We make no guarantees that this code is fit for any purpose. 
+ * Visit http://www.pragmaticprogrammer.com/titles/tpdsl for more book information.
+***/
+using Antlr4.Runtime;
 using Antlr4.Runtime.Atn;
 using Antlr4.Runtime.Tree;
 
@@ -10,11 +18,10 @@ namespace TestStack
         {
             string[] myargs = new string[] { "t.pcode" };
 
-            Test2(myargs);
-            //Test("t.pcode");
+            Execute(myargs);
         }
 
-        private static void Test2(string[] args)
+        private static void Execute(string[] args)
         {
             // PROCESS ARGS
             bool trace = false;
@@ -32,10 +39,16 @@ namespace TestStack
             }
 
             TextReader input = null!;
-            if (filename != null) 
+            if (filename != null)
+            {
+                CheckSyntax(filename);
+
                 input = File.OpenText(filename);
-            else 
+            }
+            else
+            {
                 input = Console.In;
+            }
 
             Interpreter interpreter = new Interpreter();
             interpreter.Load(input);
@@ -45,7 +58,7 @@ namespace TestStack
             if (dump) interpreter.Coredump();
         }
 
-        private static void Test(string fileName)
+        private static void CheckSyntax(string fileName)
         {
             using TextReader text_reader = File.OpenText(fileName);
 

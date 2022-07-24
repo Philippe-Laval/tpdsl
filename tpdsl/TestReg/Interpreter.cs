@@ -23,59 +23,21 @@ namespace TestReg
         public const int DEFAULT_OPERAND_STACK_SIZE = 100;
         public const int DEFAULT_CALL_STACK_SIZE = 1000;
 
-        DisAssembler disasm;
+        DisAssembler disasm = null!;
 
         int ip;             // instruction pointer register
-        byte[] code;        // byte-addressable code memory.
+        byte[] code = null!;        // byte-addressable code memory.
         int codeSize;
-        object[] globals;   // global variable space
-        protected object[] constPool;
+        object[] globals = null!;   // global variable space
+        protected object[] constPool = null!;
         /** Stack of stack frames, grows upwards */
         StackFrame[] calls = new StackFrame[DEFAULT_CALL_STACK_SIZE];
         int fp = -1;        // frame pointer register
-        FunctionSymbol mainFunction;
+        FunctionSymbol mainFunction = null!;
 
-        bool TraceEnabled = false;
+        public bool TraceEnabled { get; set; } = false;
 
-        /*
-        public static void Test(string[] args)
-        {
-            // PROCESS ARGS
-            bool trace = false;
-            bool disassemble = false;
-            bool dump = false;
-            String filename = null;
-            int i = 0;
-            while (i < args.Length) {
-                if (args[i].Equals("-trace")) { TraceEnabled = true; i++; }
-                else if (args[i].Equals("-dis")) { disassemble = true; i++; }
-                else if (args[i].Equals("-dump")) { dump = true; i++; }
-                else { filename = args[i]; i++; }
-            }
-
-            if (filename != null)
-            {
-                using TextReader input = File.OpenText(filename);
-
-                //     InputStream input = null;
-                // if ( filename!=null ) input = new FileInputStream(filename);
-                // else input = System.in;
-
-                Interpreter interpreter = new Interpreter();
-                
-                Load(interpreter, input);
-                
-                interpreter.TraceEnabled = TraceEnabled;
-                interpreter.Exec();
-
-                if (disassemble) interpreter.disassemble();
-                
-                if (dump) interpreter.coredump();
-            }
-        }
-        */
-
-        public static bool Load(Interpreter interp, TextReader input)
+        public bool Load(Interpreter interp, TextReader input)
         {
             bool hasErrors = false;
             try
