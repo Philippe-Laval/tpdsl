@@ -171,7 +171,13 @@ namespace TestReg
         /// <returns></returns>
         protected int GetLabelAddress(string id)
         {
-            LabelSymbol sym = (LabelSymbol)labels[id];
+            LabelSymbol? sym = null;
+
+            if (labels.ContainsKey(id))
+            {
+                sym = labels[id];
+            }
+
             if (sym == null)
             {
                 // assume it's a forward code reference; record opnd address
@@ -193,6 +199,7 @@ namespace TestReg
                     return sym.Address;
                 }
             }
+
             return 0; // we don't know the real address yet
         }
 
@@ -221,7 +228,13 @@ namespace TestReg
         protected override void DefineLabel(IToken idToken)
         {
             string id = idToken.Text;
-            LabelSymbol sym = (LabelSymbol)labels[id];
+
+            LabelSymbol? sym = null;
+            if (labels.ContainsKey(id))
+            {
+                sym = (LabelSymbol)labels[id];
+            }
+             
             if (sym == null)
             {
                 LabelSymbol csym = new LabelSymbol(id, ip, false);

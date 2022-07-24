@@ -47,7 +47,8 @@ namespace TestReg
             int opcode = code[ip];
             Instruction I = BytecodeDefinition.Instructions[opcode];
             string instrName = I.Name;
-            Console.Write("%04d:\t%-11s", ip, instrName);
+            //Console.Write("%04d:\t%-11s", ip, instrName
+            Console.Write($"{ip}:\t{instrName}");
             ip++;
             if (I.N == 0)
             {

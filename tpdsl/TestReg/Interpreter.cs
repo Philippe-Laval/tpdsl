@@ -326,11 +326,13 @@ namespace TestReg
             {
                 if (o is string)
                 {
-                    Console.Write("%04d: \"%s\"\n", addr, o);
+                    //Console.Write("%04d: \"%s\"\n", addr, o);
+                    Console.Write($"{addr}: \"{o}\"\n");
                 }
                 else
                 {
-                    Console.Write("%04d: %s\n", addr, o);
+                    //Console.Write("%04d: %s\n", addr, o);
+                    Console.Write($"{addr}: {o}\n");
                 }
                 addr++;
             }
@@ -345,12 +347,13 @@ namespace TestReg
             {
                 if (o != null)
                 {
-                    Console.Write("%04d: %s <%s>\n",
-                          addr, o, o.GetType().FullName);
+                    //Console.Write("%04d: %s <%s>\n", addr, o, o.GetType().FullName);
+                    Console.Write($"{addr}: {o} <{o.GetType().FullName}>\n", addr, o, o.GetType().FullName);
                 }
                 else
                 {
-                    Console.Write("%04d: <null>\n", addr);
+                    //Console.Write("%04d: <null>\n", addr);
+                    Console.Write($"{addr}: <null>\n");
                 }
                 addr++;
             }
@@ -363,8 +366,10 @@ namespace TestReg
             for (int i = 0; code != null && i < codeSize; i++)
             {
                 if (i % 8 == 0 && i != 0) Console.WriteLine();
-                if (i % 8 == 0) Console.Write("%04d:", i);
-                Console.Write(" %3d", code[i]);
+                //if (i % 8 == 0) Console.Write("%04d:", i);
+                if (i % 8 == 0) Console.Write($"{i}:");
+                //Console.Write(" %3d", code[i]);
+                Console.Write($" {code[i]}");
             }
             Console.WriteLine();
         }
