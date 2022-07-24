@@ -11,14 +11,14 @@ grammar Assembler;
 // START: members
 @members {
     // Define the functionality required by the parser for code generation
-    protected void Gen(IToken instrToken) {;}
-    protected void Gen(IToken instrToken, IToken operandToken) {;}
-    protected void Gen(IToken instrToken, IToken oToken1, IToken oToken2) {;}
-    protected void Gen(IToken instrToken, IToken oToken1, IToken oToken2, IToken oToken3) {;}
-    protected void CheckForUnresolvedReferences() {;}
-    protected void DefineFunction(IToken idToken, int nargs, int nlocals) {;}
-    protected void DefineDataSize(int n) {;}
-    protected void DefineLabel(IToken idToken) {;}
+    protected virtual void Gen(IToken instrToken) {;}
+    protected virtual void Gen(IToken instrToken, IToken operandToken) {;}
+    protected virtual void Gen(IToken instrToken, IToken oToken1, IToken oToken2) {;}
+    protected virtual void Gen(IToken instrToken, IToken oToken1, IToken oToken2, IToken oToken3) {;}
+    protected virtual void CheckForUnresolvedReferences() {;}
+    protected virtual void DefineFunction(IToken idToken, int nargs, int nlocals) {;}
+    protected virtual void DefineDataSize(int n) {;}
+    protected virtual void DefineLabel(IToken idToken) {;}
 }
 // END: members
 

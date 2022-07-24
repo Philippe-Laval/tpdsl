@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestStack
+namespace TestReg
 {
     public class StackFrame
     {
@@ -29,13 +29,14 @@ namespace TestStack
         /// <summary>
         /// holds parameters and local variables
         /// </summary>
-        public object[] Locals { get; set; }
+        public object[] Registers { get; set; }
 
         public StackFrame(FunctionSymbol sym, int returnAddress)
         {
             Sym = sym;
             ReturnAddress = returnAddress;
-            Locals = new object[sym.Nargs + sym.Nlocals];
+            // Allocate space for registers; 1 extra for r0 reserved reg
+            Registers = new object[sym.Nargs + sym.Nlocals + 1];
         }
     }
 }

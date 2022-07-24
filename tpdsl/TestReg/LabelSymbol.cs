@@ -7,13 +7,12 @@
  * Visit http://www.pragmaticprogrammer.com/titles/tpdsl for more book information.
 ***/
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestStack
+namespace TestReg
 {
     public class LabelSymbol
     {
@@ -45,7 +44,7 @@ namespace TestStack
             Name = name;
         }
 
-        public LabelSymbol(String name, int address) 
+        public LabelSymbol(String name, int address)
             : this(name)
         {
             Address = address;

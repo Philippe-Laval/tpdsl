@@ -13,7 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestStack
+namespace TestReg
 {
     /// <summary>
     /// Subclass the AssemblerParser to actually implement the necessary

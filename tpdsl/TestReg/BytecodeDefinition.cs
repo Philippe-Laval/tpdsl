@@ -53,7 +53,7 @@ namespace TestReg
         public const short INSTR_NULL = 28;   // load null into register
         public const short INSTR_HALT = 29;
 
-        public static Instruction[] instructions = new Instruction[]
+        public static Instruction[] Instructions = new Instruction[]
         {
             null!, // <INVALID>
             new Instruction("iadd", REG,REG,REG), // index is the opcode
