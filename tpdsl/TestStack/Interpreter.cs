@@ -67,7 +67,9 @@ namespace TestStack
             return hasErrors;
         }
 
-        /** Execute the bytecodes in code memory starting at mainAddr */
+        /// <summary>
+        /// Execute the bytecodes in code memory starting at mainAddr
+        /// </summary>
         public void Exec()
         {
             // SIMULATE "call main()"; set up stack as if we'd called main()
@@ -82,8 +84,10 @@ namespace TestStack
         }
 
 
-        /** Simulate the fetch-execute cycle */
-
+        /// <summary>
+        /// Simulate the fetch-execute cycle
+        /// </summary>
+        /// <exception cref="Exception"></exception>
         protected void Cpu()
         {
             object? v = null; // some locals to reuse
@@ -252,10 +256,12 @@ namespace TestStack
             ip = fs.Address; // branch to function
         }
 
-        /** Pull off 4 bytes starting at ip and return 32-bit signed int value.
-         *  Return with ip pointing *after* last byte of operand.  The byte-order
-         *  is high byte down to low byte, left to right.
-         */
+        /// <summary>
+        /// Pull off 4 bytes starting at ip and return 32-bit signed int value.
+        ///  Return with ip pointing *after* last byte of operand.The byte-order
+        ///  is high byte down to low byte, left to right.
+        /// </summary>
+        /// <returns></returns>
         protected int GetIntOperand()
         {
             int word = BytecodeAssembler.GetInt(code, ip);

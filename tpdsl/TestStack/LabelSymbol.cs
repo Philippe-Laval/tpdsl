@@ -11,16 +11,24 @@ namespace TestStack
     {
         public string Name { get; set; }
 
-        /** Address in code memory */
+        /// <summary>
+        /// Address in code memory
+        /// </summary>
         public int Address { get; set; }
 
-        /** Is this ref'd before def'd. */
+        /// <summary>
+        /// Is this ref'd before def'd.
+        /// </summary>
         public bool IsForwardRef { get; set; } = false;
 
-        /** Set when we see actual ID: definition */
+        /// <summary>
+        /// Set when we see actual ID: definition
+        /// </summary>
         public bool IsDefined { get; set; } = true;
 
-        /** List of operands in memory we need to update after seeing def */
+        /// <summary>
+        /// List of operands in memory we need to update after seeing def
+        /// </summary>
         public List<int>? ForwardReferences { get; set; } = null;
 
 
@@ -69,7 +77,7 @@ namespace TestStack
                 foreach (int addrToPatch in opndsToPatch)
                 {
                     /*
-                    System.out.println("updating operand at addr "+
+                    Console.WriteLine("updating operand at addr "+
                             addr+" to be "+getAddress());
                     */
                     BytecodeAssembler.WriteInt(code, addrToPatch, Address);

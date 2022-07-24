@@ -31,13 +31,14 @@ namespace TestStack
         protected int dataSize; // set via .globals
         protected FunctionSymbol mainFunction = null!;
 
-        /** Create an assembler attached to a lexer and define
-         *  the instruction set.
-         */
+        /// <summary>
+        /// Create an assembler attached to a lexer and define the instruction set.
+        /// </summary>
+        /// <param name="lexer"></param>
+        /// <param name="instructions"></param>
         public BytecodeAssembler(ITokenStream lexer, Instruction[] instructions)
             : base(lexer)
         {
-
             for (int i = 1; i < instructions.Length; i++)
             {
                 if (instructions[i] != null)
@@ -53,10 +54,16 @@ namespace TestStack
 
         public int GetDataSize() { return dataSize; }
 
-        /** Return the address associated with label "main:" if defined */
+        /// <summary>
+        /// Return the address associated with label "main:" if defined
+        /// </summary>
+        /// <returns></returns>
         public FunctionSymbol GetMainFunction() { return mainFunction; }
 
-        /** Generate code for an instruction with no operands */
+        /// <summary>
+        /// Generate code for an instruction with no operands
+        /// </summary>
+        /// <param name="instrToken"></param>
         protected override void Gen(IToken instrToken)
         {
             //System.out.println("Gen "+instrToken);
@@ -73,7 +80,11 @@ namespace TestStack
             code[ip++] = (byte)(opcode & 0xFF);
         }
 
-        /** Generate code for an instruction with one operand */
+        /// <summary>
+        /// Generate code for an instruction with one operand
+        /// </summary>
+        /// <param name="instrToken"></param>
+        /// <param name="operandToken"></param>
         protected override void Gen(IToken instrToken, IToken operandToken)
         {
             Gen(instrToken);
@@ -94,7 +105,7 @@ namespace TestStack
 
         protected void GenOperand(IToken operandToken)
         {
-            String text = operandToken.Text;
+            string text = operandToken.Text;
             int v = 0;
             switch (operandToken.Type)
             { // switch on token type
@@ -118,7 +129,10 @@ namespace TestStack
             return constPool.Count - 1;
         }
 
-        public Object[] GetConstantPool() { return constPool.ToArray(); }
+        public object[] GetConstantPool() 
+        {
+            return constPool.ToArray(); 
+        }
 
         protected int GetRegisterNumber(IToken rtoken)
         { // convert "rN" -> N
@@ -127,7 +141,9 @@ namespace TestStack
             return int.Parse(rs);
         }
 
-        /** After parser is complete, look for unresolved labels */
+        /// <summary>
+        /// After parser is complete, look for unresolved labels
+        /// </summary>
         protected override void CheckForUnresolvedReferences()
         {
             foreach (string name in labels.Keys)
@@ -140,8 +156,12 @@ namespace TestStack
             }
         }
 
-        /** Compute the code address of a label */
-        protected int GetLabelAddress(String id)
+        /// <summary>
+        /// Compute the code address of a label
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        protected int GetLabelAddress(string id)
         {
             LabelSymbol sym = (LabelSymbol)labels[id];
             if (sym == null)
@@ -170,7 +190,7 @@ namespace TestStack
 
         protected override void DefineFunction(IToken idToken, int args, int locals)
         {
-            String name = idToken.Text;
+            string name = idToken.Text;
             FunctionSymbol f = new FunctionSymbol(name, args, locals, ip);
             if (name.Equals("main")) mainFunction = f;
             // Did someone referred to this function before it was defined?
@@ -179,7 +199,7 @@ namespace TestStack
             else GetConstantPoolIndex(f); // save into constant pool
         }
 
-        protected int GetFunctionIndex(String id)
+        protected int GetFunctionIndex(string id)
         {
             int i = constPool.IndexOf(new FunctionSymbol(id));
             if (i >= 0) return i; // already in system; return index.
@@ -192,7 +212,7 @@ namespace TestStack
 
         protected override void DefineLabel(IToken idToken)
         {
-            String id = idToken.Text;
+            string id = idToken.Text;
             LabelSymbol sym = (LabelSymbol)labels[id];
             if (sym == null)
             {
@@ -238,9 +258,12 @@ namespace TestStack
             return word;
         }
 
-        /** Write value at index into a byte array highest to lowest byte,
-         *  left to right.
-         */
+        /// <summary>
+        /// Write value at index into a byte array highest to lowest byte, left to right.
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <param name="index"></param>
+        /// <param name="value"></param>
         public static void WriteInt(byte[] bytes, int index, int value)
         {
             bytes[index + 0] = (byte)((value >> (8 * 3)) & 0xFF); // get highest byte
