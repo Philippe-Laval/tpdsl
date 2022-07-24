@@ -17,7 +17,7 @@ namespace TestRecursiveDescent
     public abstract class Parser
     {
         Lexer input;     // from where do we get tokens?
-        protected Token lookahead; // the current lookahead token
+        protected Token lookahead = null!; // the current lookahead token
 
         public Parser(Lexer input) 
         {

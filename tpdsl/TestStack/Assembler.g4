@@ -95,5 +95,5 @@ FLOAT
 WS  :   (' '|'\t')+ -> skip ;
 
 NEWLINE
-    :   (';' .*)? '\r'? '\n'  // optional comment followed by newline
+    :   (';' .*?)? '\r'? '\n'  // optional comment followed by newline
     ;
