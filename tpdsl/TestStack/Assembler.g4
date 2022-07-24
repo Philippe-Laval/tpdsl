@@ -83,7 +83,7 @@ INT :   '-'? '0'..'9'+ ;
 
 CHAR:   '\'' . '\'' ;
 
-STRING: '\"' STR_CHARS '\"' {Text = Text.Substring(1, Text.Length-2);} ;
+STRING: '"' STR_CHARS '"' {Text = Text.Substring(1, Text.Length-2);} ;
 
 fragment STR_CHARS : ~'"'* ;
 
