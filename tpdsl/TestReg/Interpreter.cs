@@ -42,8 +42,8 @@ namespace TestReg
             bool hasErrors = false;
             try
             {
-                var inputSream = new AntlrInputStream(input);
-                AssemblerLexer assemblerLexer = new AssemblerLexer(inputSream);
+                var inputStream = new AntlrInputStream(input);
+                AssemblerLexer assemblerLexer = new AssemblerLexer(inputStream);
                 CommonTokenStream tokens = new CommonTokenStream(assemblerLexer);
                 BytecodeAssembler assembler = new BytecodeAssembler(tokens, BytecodeDefinition.Instructions);
                 assembler.program();

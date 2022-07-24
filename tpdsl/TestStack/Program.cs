@@ -16,7 +16,39 @@ namespace TestStack
     {
         static void Main(string[] args)
         {
-            string[] myargs = new string[] { "t.pcode" };
+            string[] myargs = new string[] { "t.pcode", "-trace", "-dis", "-dump" };
+            Execute(myargs);
+
+            myargs = new string[] { "t2.pcode", "-trace", "-dis", "-dump" };
+            Execute(myargs);
+
+            myargs = new string[] { "t3.pcode", "-trace", "-dis", "-dump" };
+            Execute(myargs);
+
+            myargs = new string[] { "t4.pcode", "-trace", "-dis", "-dump" };
+            Execute(myargs);
+
+            myargs = new string[] { "t5.pcode", "-trace", "-dis", "-dump" };
+            Execute(myargs);
+
+            myargs = new string[] { "t6.pcode", "-trace", "-dis", "-dump" };
+            Execute(myargs);
+
+            myargs = new string[] { "t7.pcode", "-trace", "-dis", "-dump" };
+            Execute(myargs);
+
+            myargs = new string[] { "t8.pcode", "-trace", "-dis", "-dump" };
+            Execute(myargs);
+
+            myargs = new string[] { "t9.pcode", "-trace", "-dis", "-dump" };
+            Execute(myargs);
+
+            myargs = new string[] { "struct.pcode", "-trace", "-dis", "-dump" };
+            Execute(myargs);
+
+            // Takes long, so turned off.
+            //myargs = new string[] { "loop.pcode", "-trace", "-dis", "-dump" };
+            //Execute(myargs);
 
             Execute(myargs);
         }

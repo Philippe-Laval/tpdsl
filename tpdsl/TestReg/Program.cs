@@ -33,7 +33,7 @@ namespace TestReg
 
             // Takes long, so turned off.
             //myargs = new string[] { "loop.rcode", "-trace", "-dis", "-dump" };
-            //Test(myargs);
+            //Execute(myargs);
         }
 
 

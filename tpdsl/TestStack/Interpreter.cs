@@ -52,8 +52,8 @@ namespace TestStack
             bool hasErrors = false;
             try
             {
-                AssemblerLexer assemblerLexer =
-                    new AssemblerLexer(new AntlrInputStream(input));
+                var inputStream = new AntlrInputStream(input);
+                AssemblerLexer assemblerLexer = new AssemblerLexer(inputStream);
                 CommonTokenStream tokens = new CommonTokenStream(assemblerLexer);
                 BytecodeAssembler assembler = new BytecodeAssembler(tokens, BytecodeDefinition.Instructions);
                 assembler.program();

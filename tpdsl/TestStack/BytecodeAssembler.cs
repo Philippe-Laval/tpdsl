@@ -9,6 +9,7 @@
 using Antlr4.Runtime;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -119,7 +120,7 @@ namespace TestStack
             { // switch on token type
                 case INT: v = int.Parse(text); break;
                 case CHAR: v = text[0]; break;
-                case FLOAT: v = GetConstantPoolIndex(float.Parse(text)); break;
+                case FLOAT: v = GetConstantPoolIndex(float.Parse(text, CultureInfo.InvariantCulture)); break;
                 case STRING: v = GetConstantPoolIndex(text); break;
                 case ID: v = GetLabelAddress(text); break;
                 case FUNC: v = GetFunctionIndex(text); break;
@@ -171,7 +172,13 @@ namespace TestStack
         /// <returns></returns>
         protected int GetLabelAddress(string id)
         {
-            LabelSymbol sym = (LabelSymbol)labels[id];
+            LabelSymbol? sym = null;
+
+            if (labels.ContainsKey(id))
+            {
+                sym = (LabelSymbol)labels[id];
+            }
+
             if (sym == null)
             {
                 // assume it's a forward code reference; record opnd address
@@ -221,7 +228,14 @@ namespace TestStack
         protected override void DefineLabel(IToken idToken)
         {
             string id = idToken.Text;
-            LabelSymbol sym = (LabelSymbol)labels[id];
+
+            LabelSymbol? sym = null;
+
+            if (labels.ContainsKey(id))
+            {
+                sym = labels[id];
+            }
+
             if (sym == null)
             {
                 LabelSymbol csym = new LabelSymbol(id, ip, false);

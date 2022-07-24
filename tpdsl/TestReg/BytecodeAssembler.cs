@@ -9,6 +9,7 @@
 using Antlr4.Runtime;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -119,7 +120,7 @@ namespace TestReg
             { // switch on token type
                 case INT: v = int.Parse(text); break;
                 case CHAR: v = text[0]; break;
-                case FLOAT: v = GetConstantPoolIndex(float.Parse(text)); break;
+                case FLOAT: v = GetConstantPoolIndex(float.Parse(text, CultureInfo.InvariantCulture)); break;
                 case STRING: v = GetConstantPoolIndex(text); break;
                 case ID: v = GetLabelAddress(text); break;
                 case FUNC: v = GetFunctionIndex(text); break;
@@ -230,6 +231,7 @@ namespace TestReg
             string id = idToken.Text;
 
             LabelSymbol? sym = null;
+
             if (labels.ContainsKey(id))
             {
                 sym = (LabelSymbol)labels[id];
