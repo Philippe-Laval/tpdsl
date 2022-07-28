@@ -14,46 +14,104 @@ namespace TestFig
         {
         }
 
-        protected override void SetObjectProperty(object o, string propertyName, object value)
+        protected override void SetObjectProperty(object obj, string propertyName, object value)
         {
-            Type c = o.GetType();
+            Type type = obj.GetType();
 
             // First see if name is a property ala javabeans
             string methodSuffix = propertyName.Substring(0, 1).ToUpper() + propertyName.Substring(1);
-            MethodInfo? m = GetMethod(c, "set" + methodSuffix, new Type[] { value.GetType() });
-            if (m != null)
+            MethodInfo? methodInfo = GetMethod(type, "Set" + methodSuffix, new Type[] { value.GetType() });
+            if (methodInfo != null)
             {
                 try
                 {
-                    InvokeMethod(m, o, value);
+                    InvokeMethod(methodInfo, obj, value);
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine("Can't set property " + propertyName + " using method set" + methodSuffix +
-                        " from " + c.FullName + " instance: " + e);
+                        " from " + type.FullName + " instance: " + e);
                 }
             }
             else
             {
-                //// try for a visible field
-                //try
-                //{
-                //    Field f = c.getField(propertyName);
-                //    try
-                //    {
-                //        f.set(o, value);
-                //    }
-                //    catch (IllegalAccessException iae)
-                //    {
-                //        System.err.println("Can't access property " + propertyName + " using direct field access from " +
-                //                c.getName() + " instance: " + iae);
-                //    }
-                //}
-                //catch (NoSuchFieldException nsfe)
-                //{
-                //    System.err.println("Class " + c.getName() + " has no such property/field: " + propertyName +
-                //        ": " + nsfe);
-                //}
+                // https://stackoverflow.com/questions/25757121/c-sharp-how-to-set-propertyinfo-value-when-its-type-is-a-listt-and-i-have-a-li
+                // propertyInfo.SetValue(obj, value.Cast<int>().ToList(), null);
+
+
+                // try for a visible field
+                try
+                {
+                    string name = propertyName.Substring(0, 1).ToUpper() + propertyName.Substring(1);
+                    PropertyInfo? propertyInfo = type.GetProperty(name);
+                    if (propertyInfo is not null)
+                    {
+                        try
+                        {
+
+                            Type type2 = propertyInfo.PropertyType;
+                            if (type2.IsGenericType && type2.GetGenericTypeDefinition() == typeof(List<>))
+                            {
+                                Type itemType = type2.GetGenericArguments()[0]; // use this...
+
+                                // IEnumerable<TResult> Cast<TResult>(this IEnumerable source);
+                                MethodInfo? CastMethod = typeof(Enumerable).GetMethod("Cast");
+                                List<string> a;
+                                // List<TSource> ToList<TSource>(this IEnumerable<TSource> source);
+                                MethodInfo? ToListMethod = typeof(Enumerable).GetMethod("ToList");
+
+
+                                var castItems = CastMethod?.MakeGenericMethod(new Type[] { itemType })
+                                                            .Invoke(null, new object[] { value });
+                                if (castItems is not null)
+                                {
+                                    var list = ToListMethod?.MakeGenericMethod(new Type[] { itemType })
+                                                              .Invoke(null, new object[] { castItems });
+                                    if (list is not null)
+                                    {
+                                        propertyInfo.SetValue(obj, list, null);
+                                    }
+                                }
+
+                                // Works to
+                                //
+                                //var listType = typeof(List<>);
+                                //var genericArgs = propertyInfo.PropertyType.GetGenericArguments();
+                                //var concreteType = listType.MakeGenericType(genericArgs);
+                                //var instance = Activator.CreateInstance(concreteType);
+                                //if (instance is System.Collections.IList newList)
+                                //{
+                                //    if (value is List<object> oldList)
+                                //    {
+                                //        foreach (object o in oldList)
+                                //        {
+                                //            newList.Add(o);
+                                //        }
+
+                                //        propertyInfo.SetValue(obj, newList, null);
+                                //    }
+                                //}
+                            }
+                            else
+                            {
+                                propertyInfo.SetValue(obj, value, null);
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("Can't access property " + name + " using direct property access from " +
+                                    type.FullName + " instance: " + e);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Class " + type.FullName + " has no such property/field: " + name);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
             }
         }
 

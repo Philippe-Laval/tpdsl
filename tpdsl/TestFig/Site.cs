@@ -19,7 +19,7 @@ namespace TestFig
         // can refer to Site in a Fig file
         public int Port { get; set; }
         public string Answers { get; protected set; } = string.Empty; // set with setAnswers
-        public List<string> Aliases { get; set; } = new();
+        public List<string>? Aliases { get; set; } = null;
 
         /// <summary>
         /// The reflection support code looks for setters first then fields
@@ -33,7 +33,7 @@ namespace TestFig
         public override string ToString()
         {
             return $"<Site {Answers}:{Port}" + 
-                   (Aliases == null ? "" : $",aliases={string.Join(", ", Aliases)}") + ">";
+                   (Aliases is null ? "" : $",aliases=[{string.Join(", ", Aliases)}]") + ">";
         }
     }
 }

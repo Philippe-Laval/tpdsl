@@ -38,7 +38,7 @@ object returns [object o] // return object that we create
 type:   ID ('.' ID)* ; // qualified ID like java.util.List
     
 // START: property
-property[Object o]     // accept instance parameter from object rule
+property[object o]     // accept instance parameter from object rule
     :   ID '=' expr ';'
         // set o's ID property with expr result
         {SetObjectProperty(o,$ID.text,$expr.value);}
