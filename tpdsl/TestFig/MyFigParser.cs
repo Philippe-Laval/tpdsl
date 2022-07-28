@@ -78,7 +78,7 @@ namespace TestFig
             return o;
         }
 
-        protected override MethodInfo? GetMethod(Type c, string methodName, Type[] args)
+        protected MethodInfo? GetMethod(Type c, string methodName, Type[] args)
         {
             MethodInfo? m;
             try
@@ -92,12 +92,12 @@ namespace TestFig
             return m;
         }
 
-        protected override object? InvokeMethod(MethodInfo m, object? o)
+        protected object? InvokeMethod(MethodInfo m, object? o)
         {
             return m.Invoke(o, null);
         }
 
-        protected override object? InvokeMethod(MethodInfo m, object? o, object? value)
+        protected object? InvokeMethod(MethodInfo m, object? o, object? value)
         {
             object?[]? args = null;
             if (value != null)

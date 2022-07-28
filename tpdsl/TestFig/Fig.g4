@@ -14,9 +14,6 @@ using System.Reflection;
     // Define the functionality required by the parser
         protected virtual void SetObjectProperty(object o, string propertyName, object value) {;}
 	    protected virtual object NewInstance(string name) { return null; }
-	    protected virtual MethodInfo GetMethod(Type c, string methodName, Type[] args) { return null; }
-	    protected virtual object InvokeMethod(MethodInfo m, object o) { return null; }
-	    protected virtual object InvokeMethod(MethodInfo m, object o, object value) { return null; ;}
 }
 // END: members
 
