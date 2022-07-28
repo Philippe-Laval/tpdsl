@@ -143,8 +143,13 @@ namespace TestStack
             return constPool.ToArray(); 
         }
 
+        /// <summary>
+        /// convert "rN" -> N
+        /// </summary>
+        /// <param name="rtoken"></param>
+        /// <returns></returns>
         protected int GetRegisterNumber(IToken rtoken)
-        { // convert "rN" -> N
+        { 
             String rs = rtoken.Text;
             rs = rs.Substring(1);
             return int.Parse(rs);
