@@ -8,18 +8,24 @@
 ***/
 using Antlr4.StringTemplate;
 
-namespace TestIntro
+namespace TestAst
 {
     class Program
     {
         static void Main(string[] args)
         {
-            string assign = "<left> = <right>;";
-            Template st = new Template(assign, '<', '>');
-            st.Add("left", "x");   // attribute left is a string
-            st.Add("right", 99);   // attribute right is an integer
-            string output = st.Render();  // render template to text
-            Console.WriteLine(output);
+            Tree t = new Tree("VAR");
+            t.AddChild(new Tree("int"));
+            t.AddChild(new Tree("x"));
+
+            Tree m = new Tree("+");
+            m.AddChild(new Tree("3"));
+            m.AddChild(new Tree("4"));
+
+            t.AddChild(m);
+            
+            ASTViz viz = new ASTViz(t);
+            Console.WriteLine(viz.ToString());
         }
     }
 }
